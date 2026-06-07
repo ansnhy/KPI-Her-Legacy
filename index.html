@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HER LEGACY - Executive KPI &amp; Campaign Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paragon: {
+                            gold: '#C5A880',
+                            rose: '#E5C0B3',
+                            burgundy: '#5C222E',
+                            dark: '#1F1315',
+                            light: '#FAF7F5',
+                            emerald: '#2D6A4F',
+                            pinkPastel: '#FCE7F3'
+                        }
+                    },
+                    fontFamily: {
+                        urbanist: ['Urbanist', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAF7F5;
+            color: #1F1315;
+        }
+        .font-header {
+            font-family: 'Urbanist', sans-serif;
+        }
+        .tab-btn.active {
+            background-color: #5C222E;
+            color: #FFFFFF;
+            border-color: #C5A880;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #FAF7F5;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #C5A880;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#FAF7F5] pb-12">
+
+    <header class="bg-[#5C222E] text-white py-6 px-6 md:px-12 relative overflow-hidden shadow-md">
+        <div class="absolute -right-16 -top-16 w-64 h-64 bg-[#C5A880] rounded-full opacity-10 blur-2xl"></div>
+        <div class="max-w-7xl mx-auto flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 relative z-10">
+            <div>
+                <span class="bg-[#C5A880] text-[#5C222E] text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full font-header">
+                    Divisi Corporate Communication &amp; Public Relations
+                </span>
+                <h1 class="text-3xl font-extrabold font-header tracking-tight mt-2 flex items-center gap-3">
+                    HER LEGACY <span class="text-xs font-normal bg-white/10 px-3 py-1 rounded-full text-[#E5C0B3]">CSR Campaign Dashboard</span>
+                </h1>
+                <p class="text-[#E5C0B3] text-xs md:text-sm mt-1">
+                    Kolaborasi Strategis Pemberdayaan Perempuan Lansia RIA Pembangunan Cibubur Menuju Galeri Taman Ismail Marzuki
+                </p>
+            </div>
+            
+            <!-- Tab Controls -->
+            <div class="flex flex-wrap gap-1 bg-white/10 p-1 rounded-xl border border-white/10 w-full xl:w-auto">
+                <button onclick="switchTab('dashboard')" id="btn-dashboard" class="tab-btn active flex-1 xl:flex-none text-center px-4 py-2.5 text-xs font-bold rounded-lg transition-all duration-300 whitespace-nowrap">
+                    <i class="fa-solid fa-chart-line mr-1.5"></i> 1. Ringkasan Proyek
+                </button>
+                <button onclick="switchTab('table')" id="btn-table" class="tab-btn flex-1 xl:flex-none text-center px-4 py-2.5 hover:bg-white/5 text-[#E5C0B3] text-xs font-bold rounded-lg transition-all duration-300 whitespace-nowrap">
+                    <i class="fa-solid fa-table-list mr-1.5"></i> 2. Kerangka KPI &amp; Peran
+                </button>
+                <button onclick="switchTab('timeline')" id="btn-timeline" class="tab-btn flex-1 xl:flex-none text-center px-4 py-2.5 hover:bg-white/5 text-[#E5C0B3] text-xs font-bold rounded-lg transition-all duration-300 whitespace-nowrap">
+                    <i class="fa-solid fa-calendar-days mr-1.5"></i> 3. Linimasa Kerja (17 Langkah)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 md:px-8 mt-8">
+
+        <!-- ================= TAB 1 - DASHBOARD RINGKASAN ================= -->
+        <div id="section-dashboard" class="space-y-6">
+            
+            <!-- Top Row: Big Number Metrics -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Metric 1 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex items-center gap-5">
+                    <div class="w-16 h-16 rounded-full bg-[#5C222E]/10 flex items-center justify-center text-[#5C222E] shrink-0">
+                        <i class="fa-solid fa-clock text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider block">Total Jam Kolaborasi</span>
+                        <span class="text-3xl font-extrabold font-header text-slate-800">1.200 Jam</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5">Sesi interaksi bermakna bertahap (maksimal 2 jam per sesi)</p>
+                    </div>
+                </div>
+
+                <!-- Metric 2 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex items-center gap-5">
+                    <div class="w-16 h-16 rounded-full bg-[#C5A880]/10 flex items-center justify-center text-[#C5A880] shrink-0">
+                        <i class="fa-solid fa-users text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider block">Relawan Terdaftar</span>
+                        <span class="text-3xl font-extrabold font-header text-slate-800">150 Karyawan</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5">Sistem *plotting* kelompok: 2 karyawan mendampingi 1 lansia</p>
+                    </div>
+                </div>
+
+                <!-- Metric 3 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex items-center gap-5">
+                    <div class="w-16 h-16 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0">
+                        <i class="fa-solid fa-hand-holding-heart text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider block">Alokasi Hasil Penjualan</span>
+                        <span class="text-3xl font-extrabold font-header text-emerald-700">100% Donasi</span>
+                        <p class="text-[11px] text-slate-500 mt-0.5">Nol rupiah profit korporat; disalurkan langsung untuk kesejahteraan lansia</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Donut Chart & Divisions Breakdown -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Donut Chart Card -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-700 uppercase tracking-wider mb-4 border-b border-slate-100 pb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-pie text-[#C5A880]"></i> Fokus Alokasi Aktivitas Program
+                        </h3>
+                        <div class="flex flex-col sm:flex-row items-center justify-around gap-6 py-4">
+                            <!-- SVG Custom Donut -->
+                            <div class="relative w-40 h-40 shrink-0">
+                                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                                    <path class="text-slate-100" stroke-width="4.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <!-- Portion 1: Legacy Sharing & Therapy (35%) -->
+                                    <path class="text-[#5C222E]" stroke-dasharray="35, 100" stroke-width="4.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <!-- Portion 2: Co-Creation Kriya (35%) -->
+                                    <path class="text-[#C5A880]" stroke-dasharray="35, 100" stroke-dashoffset="-35" stroke-width="4.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <!-- Portion 3: Monumen TIM (20%) -->
+                                    <path class="text-[#E5C0B3]" stroke-dasharray="20, 100" stroke-dashoffset="-70" stroke-width="4.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <!-- Portion 4: Media & Publikasi (10%) -->
+                                    <path class="text-emerald-500" stroke-dasharray="10, 100" stroke-dashoffset="-90" stroke-width="4.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                </svg>
+                                <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Gong Utama</span>
+                                    <span class="text-sm font-extrabold text-[#5C222E] font-header leading-tight">Instalasi TIM</span>
+                                </div>
+                            </div>
+
+                            <!-- Legend -->
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded bg-[#5C222E] block shrink-0"></span>
+                                    <span class="text-xs text-slate-600 font-semibold">Legacy Sharing &amp; Terapi (35%)</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded bg-[#C5A880] block shrink-0"></span>
+                                    <span class="text-xs text-slate-600 font-semibold">Co-Creation Seni Kriya (35%)</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded bg-[#E5C0B3] block shrink-0"></span>
+                                    <span class="text-xs text-slate-600 font-semibold">Pembangunan Monumen TIM (20%)</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded bg-emerald-500 block shrink-0"></span>
+                                    <span class="text-xs text-slate-600 font-semibold">Media &amp; Publikasi (10%)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Division Table Card -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-700 uppercase tracking-wider mb-4 border-b border-slate-100 pb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-users-gear text-[#C5A880]"></i> Kontingen Plotting Relawan Karyawan
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-600 mb-1">
+                                    <span>RESEARCH, DEVELOPMENT, &amp; PRODUCTION</span>
+                                    <span>35% (53 Orang)</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-[#5C222E] h-full rounded-full" style="width: 35%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-600 mb-1">
+                                    <span>MARKETING &amp; BRAND COMMUNICATOR</span>
+                                    <span>28% (42 Orang)</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-[#C5A880] h-full rounded-full" style="width: 28%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-600 mb-1">
+                                    <span>HUMAN CAPITAL &amp; OPERATIONS</span>
+                                    <span>19% (29 Orang)</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-[#E5C0B3] h-full rounded-full" style="width: 19%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-600 mb-1">
+                                    <span>SUPPORTING DIVISIONS</span>
+                                    <span>18% (26 Orang)</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-slate-400 h-full rounded-full" style="width: 18%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PR Simulator Simulator -->
+            <div class="bg-[#5C222E] text-white rounded-2xl p-6 relative overflow-hidden shadow-lg">
+                <div class="absolute -right-24 -bottom-24 w-72 h-72 bg-[#C5A880] rounded-full opacity-10 blur-3xl"></div>
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                    <div class="space-y-2">
+                        <span class="bg-[#C5A880] text-[#5C222E] text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full font-header">
+                            PR Simulator
+                        </span>
+                        <h3 class="text-xl font-bold font-header">Prediksi Reputasi Organik</h3>
+                        <p class="text-xs text-[#E5C0B3]">Simulasikan parameter keaktifan kolaborasi karyawan untuk memproyeksikan kekuatan nilai publisitas media nasional.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-[#E5C0B3] mb-1">
+                                <span>Partisipasi Relawan Aktif</span>
+                                <span id="lbl-vol-count">85 Orang</span>
+                            </div>
+                            <input type="range" id="sim-vol" min="10" max="150" value="85" oninput="runPRSimulation()" class="w-full accent-[#C5A880] h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-[#E5C0B3] mb-1">
+                                <span>Rata-Rata Sesi Kriya (Jam/Minggu)</span>
+                                <span id="lbl-hours-count">2 Jam</span>
+                            </div>
+                            <input type="range" id="sim-hours" min="1" max="4" value="2" oninput="runPRSimulation()" class="w-full accent-[#C5A880] h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 p-5 rounded-xl flex flex-col items-center justify-center text-center">
+                        <span class="text-xs text-[#E5C0B3] font-semibold uppercase tracking-wider">Skor Kredibilitas Cerita Media</span>
+                        <span id="txt-score" class="text-5xl font-extrabold font-header text-white my-1">78</span>
+                        <p id="txt-feedback" class="text-[10px] text-slate-300 italic">"Sentimen positif stabil, rilis berita memiliki peluang muat di media nasional."</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= TAB 2 - KERANGKA KPI & PERAN ================= -->
+        <div id="section-table" class="hidden space-y-8">
+            
+            <!-- Peran Sub-Tim Kelompok -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Sub-Tim 1 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
+                            <span class="text-xs font-bold text-[#5C222E] uppercase font-header">Sub-Tim 1</span>
+                            <span class="bg-[#5C222E]/10 text-[#5C222E] text-[10px] font-bold px-2.5 py-0.5 rounded-full">Riset &amp; Evaluasi</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Bertanggung jawab mengaudit profil Sasana Tresna Werda RIA Pembangunan Cibubur, memetakan isu marginalisasi lansia, serta mengukur metrik kebanggaan karyawan pasca-program.
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-[11px] text-slate-500">
+                        <span class="font-bold text-slate-700 block mb-1">Presentasi Bagian:</span>
+                        Latar Belakang Isu, Profil Panti Cibubur, &amp; Evaluasi Dampak Reputasi Korporat.
+                    </div>
+                </div>
+
+                <!-- Sub-Tim 2 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
+                            <span class="text-xs font-bold text-[#C5A880] uppercase font-header">Sub-Tim 2</span>
+                            <span class="bg-[#C5A880]/20 text-[#5C222E] text-[10px] font-bold px-2.5 py-0.5 rounded-full">Desain &amp; Lapangan</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Bertanggung jawab menyusun mekanisme plotting relawan, skenario terapi sensorik anti-canggung, teknis sesi kriya kolaboratif, serta instalasi pameran di TIM.
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-[11px] text-slate-500">
+                        <span class="font-bold text-slate-700 block mb-1">Presentasi Bagian:</span>
+                        Konsep Acara, Alur Interaksi 2 Jam, &amp; Integrasi Instalasi Seni Taman Ismail Marzuki.
+                    </div>
+                </div>
+
+                <!-- Sub-Tim 3 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
+                            <span class="text-xs font-bold text-emerald-700 uppercase font-header">Sub-Tim 3</span>
+                            <span class="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full">Media &amp; Publikasi</span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Bertanggung jawab merangkum *News Value* (nilai jual berita human interest), penulisan rilis pers monumen kolaboratif, serta merancang visual kampanye publik.
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-[11px] text-slate-500">
+                        <span class="font-bold text-slate-700 block mb-1">Presentasi Bagian:</span>
+                        Analisis Nilai Berita, Strategi Media Relations, &amp; Rencana Kampanye Publik.
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-md overflow-hidden">
+                <div class="p-5 border-b border-slate-100">
+                    <h3 class="text-sm font-bold text-slate-700 uppercase tracking-wider">
+                        Matriks Penyelarasan KPI Karyawan (HER LEGACY)
+                    </h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-[#5C222E] text-white border-b border-[#5C222E]">
+                                <th class="py-4 px-5 text-[11px] font-bold uppercase tracking-wider font-header w-[220px]">Tahapan Alur Program</th>
+                                <th class="py-4 px-5 text-[11px] font-bold uppercase tracking-wider font-header w-[260px]">Aktivitas Riil Relawan Karyawan</th>
+                                <th class="py-4 px-5 text-[11px] font-bold uppercase tracking-wider font-header">Indikator Keberhasilan (KPI Sederhana)</th>
+                                <th class="py-4 px-5 text-[11px] font-bold uppercase tracking-wider font-header w-[220px]">Target Utama (Goal)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-slate-700 text-xs font-medium">
+                            <!-- Tahap 1 -->
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="py-4 px-5">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-6 h-6 rounded bg-[#E5C0B3] text-[#5C222E] flex items-center justify-center font-extrabold text-[11px]">1</span>
+                                        <div>
+                                            <span class="font-bold text-slate-800 block text-xs">Persiapan &amp; Rekrutmen</span>
+                                            <span class="text-[9px] text-slate-400">Juli - Agustus</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-5 text-slate-600">
+                                    Mengikuti pengarahan empati singkat dan menerima plotting kelompok kerja (2 karyawan mendampingi 1 lansia).
+                                </td>
+                                <td class="py-4 px-5">
+                                    <ul class="list-disc pl-4 space-y-1 text-slate-600 text-[11px]">
+                                        <li>Tingkat kehadiran sesi pengarahan orientasi (100%).</li>
+                                        <li>Distribusi kelompok plotting terselesaikan tepat waktu.</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-5">
+                                    <span class="bg-[#5C222E]/10 text-[#5C222E] px-2.5 py-1 rounded font-bold text-[10px] inline-block">
+                                        150 Relawan Ter-plotting
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <!-- Tahap 2 -->
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="py-4 px-5">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-6 h-6 rounded bg-[#E5C0B3] text-[#5C222E] flex items-center justify-center font-extrabold text-[11px]">2</span>
+                                        <div>
+                                            <span class="font-bold text-slate-800 block text-xs">Legacy Sharing Session</span>
+                                            <span class="text-[9px] text-slate-400">September (2 Jam/Sesi)</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-5 text-slate-600">
+                                    Mengunjungi panti di Cibubur, memecah kecanggangan lewat terapi pijat tangan dengan produk Paragon, &amp; memicu obrolan santai via *Nostalgia Box*.
+                                </td>
+                                <td class="py-4 px-5">
+                                    <ul class="list-disc pl-4 space-y-1 text-slate-600 text-[11px]">
+                                        <li>Persentase rasa nyaman lansia selama interaksi terstruktur (&gt; 95%).</li>
+                                        <li>Terangkumnya 1 catatan poin emosional kisah hidup lansia.</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-5">
+                                    <span class="bg-[#C5A880]/20 text-[#5C222E] px-2.5 py-1 rounded font-bold text-[10px] inline-block">
+                                        75 Kisah Hidup Terangkum
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <!-- Tahap 3 -->
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="py-4 px-5">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-6 h-6 rounded bg-[#E5C0B3] text-[#5C222E] flex items-center justify-center font-extrabold text-[11px]">3</span>
+                                        <div>
+                                            <span class="font-bold text-slate-800 block text-xs">Co-Creation Kriya</span>
+                                            <span class="text-[9px] text-slate-400">Oktober (2 Jam/Minggu)</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-5 text-slate-600">
+                                    Berkolaborasi secara setara membuat kriya fisik skala kecil (rajutan memori/kolase) yang merepresentasikan kisah hidup lansia mitranya.
+                                </td>
+                                <td class="py-4 px-5">
+                                    <ul class="list-disc pl-4 space-y-1 text-slate-600 text-[11px]">
+                                        <li>Kepatuhan durasi aktivitas kolaborasi ringan (maksimal 2 jam).</li>
+                                        <li>Kelengkapan penyelesaian unit elemen kriya fisik kolaboratif.</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-5">
+                                    <span class="bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded font-bold text-[10px] inline-block">
+                                        75 Unit Elemen Seni Rampung
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <!-- Tahap 4 -->
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="py-4 px-5">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-6 h-6 rounded bg-[#E5C0B3] text-[#5C222E] flex items-center justify-center font-extrabold text-[11px]">4</span>
+                                        <div>
+                                            <span class="font-bold text-slate-800 block text-xs">Persiapan Showcase</span>
+                                            <span class="text-[9px] text-slate-400">November</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-5 text-slate-600">
+                                    Menyusun plakat narasi cerita lansia di samping karya dan membagikan poster ajakan digital di jejaring LinkedIn profesional masing-masing.
+                                </td>
+                                <td class="py-4 px-5">
+                                    <ul class="list-disc pl-4 space-y-1 text-slate-600 text-[11px]">
+                                        <li>Tingkat partisipasi advokasi digital internal karyawan (&gt; 80%).</li>
+                                        <li>Kesiapan pengiriman seluruh elemen instalasi ke TIM (H-1).</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-5">
+                                    <span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded font-bold text-[10px] inline-block">
+                                        Kesiapan Instalasi TIM 100%
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <!-- Tahap 5 -->
+                            <tr class="hover:bg-[#5C222E]/5 transition-colors">
+                                <td class="py-4 px-5">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-6 h-6 rounded bg-[#5C222E] text-white flex items-center justify-center font-extrabold text-[11px]">5</span>
+                                        <div>
+                                            <span class="font-bold text-slate-800 block text-xs">LEGACY SHOWCASE</span>
+                                            <span class="text-[9px] text-[#5C222E] font-bold">Desember (M1)</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-5 text-slate-600">
+                                    Menghadiri peresmian monumen kolaboratif "Tirai Memori" di TIM dan mendampingi lansia mitra berjalan menyusuri galeri pameran publik.
+                                </td>
+                                <td class="py-4 px-5">
+                                    <ul class="list-disc pl-4 space-y-1 text-slate-600 text-[11px] font-semibold">
+                                        <li>Indeks kebahagiaan &amp; pengakuan publik yang dirasakan lansia.</li>
+                                        <li>Publikasi organik bermuatan nilai berita tinggi (*Human Interest &amp; Novelty*).</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-5">
+                                    <span class="bg-rose-50 text-rose-700 px-2.5 py-1 rounded font-bold text-[10px] inline-block">
+                                        Monumen Terpajang Cantik
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <!-- Tahap 6 -->
+                            <tr class="hover:bg-slate-50/50 transition-colors">
+                                <td class="py-4 px-5">
+                                    <div class="flex items-center gap-2.5">
+                                        <span class="w-6 h-6 rounded bg-[#E5C0B3] text-[#5C222E] flex items-center justify-center font-extrabold text-[11px]">6</span>
+                                        <div>
+                                            <span class="font-bold text-slate-800 block text-xs">Evaluasi &amp; Reputasi</span>
+                                            <span class="text-[9px] text-slate-400">Desember (M2-M4)</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-5 text-slate-600">
+                                    Mengisi formulir refleksi empati dan survei indeks kebanggaan internal karyawan (*Employee Net Promoter Score*).
+                                </td>
+                                <td class="py-4 px-5">
+                                    <ul class="list-disc pl-4 space-y-1 text-slate-600 text-[11px]">
+                                        <li>Batas penyusunan laporan CSR internal (maksimal H+3 acara).</li>
+                                        <li>Peningkatan skor kebanggaan bekerja karyawan (*eNPS* &gt; 85%).</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-5">
+                                    <span class="bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded font-bold text-[10px] inline-block">
+                                        Reputasi Humanis Terkunci
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= TAB 3 - LINIMASA PROGRAM ================= -->
+        <div id="section-timeline" class="hidden space-y-6">
+            
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-md">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4 mb-6">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-800 font-header uppercase">Gantt Chart Linimasa Kerja "HER LEGACY"</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Jadwal pelaksanaan kerja taktis terintegrasi dari tahap perencanaan awal (Juli) hingga pelaporan akhir (Desember).</p>
+                    </div>
+                    <div class="flex gap-4 text-xs font-semibold shrink-0">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3.5 h-3.5 rounded bg-[#5C222E] block"></span>
+                            <span>Proses Aktif</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3.5 h-3.5 rounded border border-slate-200 block"></span>
+                            <span>Masa Tunggu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scrollable Timeline Grid Container -->
+                <div class="overflow-x-auto custom-scroll border border-slate-200 rounded-xl">
+                    <div class="min-w-[950px] bg-white divide-y divide-slate-100">
+                        
+                        <!-- Timeline Header (Months) -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] bg-slate-50 text-[10px] font-bold text-slate-500 text-center uppercase tracking-wider">
+                            <div class="py-3 px-4 text-left text-xs text-slate-700 font-extrabold border-r border-slate-200 bg-slate-100/55">Aktivitas Utama</div>
+                            <div colspan="4" class="py-3 border-r border-slate-200 bg-[#5C222E]/5 text-[#5C222E] font-extrabold">Juli</div>
+                            <div colspan="4" class="py-3 border-r border-slate-200 bg-[#C5A880]/5 text-[#C5A880] font-extrabold">Agustus</div>
+                            <div colspan="4" class="py-3 border-r border-slate-200 bg-[#5C222E]/5 text-[#5C222E] font-extrabold">September</div>
+                            <div colspan="4" class="py-3 border-r border-slate-200 bg-[#C5A880]/5 text-[#C5A880] font-extrabold">Oktober</div>
+                            <div colspan="4" class="py-3 border-r border-slate-200 bg-[#5C222E]/5 text-[#5C222E] font-extrabold">November</div>
+                            <div colspan="4" class="py-3 bg-[#C5A880]/5 text-[#C5A880] font-extrabold">Desember</div>
+                        </div>
+
+                        <!-- Timeline Header (Weeks) -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] text-[9px] font-bold text-slate-400 text-center divide-x divide-slate-100 border-b border-slate-200">
+                            <div class="py-1 px-4 text-left text-slate-500 border-r border-slate-200">Minggu Ke-</div>
+                            <!-- Juli -->
+                            <div class="py-1 bg-[#5C222E]/5 text-[#5C222E]">1</div><div class="py-1 bg-[#5C222E]/5 text-[#5C222E]">2</div><div class="py-1 bg-[#5C222E]/5 text-[#5C222E]">3</div><div class="py-1 bg-[#5C222E]/5 text-[#5C222E] border-r border-slate-300">4</div>
+                            <!-- Agustus -->
+                            <div class="py-1 bg-[#C5A880]/5 text-[#C5A880]">1</div><div class="py-1 bg-[#C5A880]/5 text-[#C5A880]">2</div><div class="py-1 bg-[#C5A880]/5 text-[#C5A880]">3</div><div class="py-1 bg-[#C5A880]/5 text-[#C5A880] border-r border-slate-300">4</div>
+                            <!-- September -->
+                            <div class="py-1 bg-[#5C222E]/5 text-[#5C222E]">1</div><div class="py-1 bg-[#5C222E]/5 text-[#5C222E]">2</div><div class="py-1 bg-[#5C222E]/5 text-[#5C222E]">3</div><div class="py-1 bg-[#5C222E]/5 text-[#5C222E] border-r border-slate-300">4</div>
+                            <!-- Oktober -->
+                            <div class="py-1 bg-[#C5A880]/5 text-[#C5A880]">1</div><div class="py-1 bg-[#C5A880]/5 text-[#C5A880]">2</div><div class="py-1 bg-[#C5A880]/5 text-[#C5A880]">3</div><div class="py-1 bg-[#C5A880]/5 text-[#C5A880] border-r border-slate-300">4</div>
+                            <!-- November -->
+                            <div class="py-1 bg-[#5C222E]/5 text-[#5C222E]">1</div><div class="py-1 bg-[#5C222E]/5 text-[#5C222E]">2</div><div class="py-1 bg-[#5C222E]/5 text-[#5C222E]">3</div><div class="py-1 bg-[#5C222E]/5 text-[#5C222E] border-r border-slate-300">4</div>
+                            <!-- Desember -->
+                            <div class="py-1 bg-[#C5A880]/5 text-[#C5A880]">1</div><div class="py-1 bg-[#C5A880]/5 text-[#C5A880]">2</div><div class="py-1 bg-[#C5A880]/5 text-[#C5A880]">3</div><div class="py-1 bg-[#C5A880]/5 text-[#C5A880]">4</div>
+                        </div>
+
+                        <!-- Row 1 -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <div class="py-2 px-4 text-xs font-semibold text-slate-700 border-r border-slate-200">1. Riset &amp; Need Assessment</div>
+                            <div class="py-2.5 bg-[#5C222E]"></div><div class="py-2.5 bg-[#5C222E]"></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+
+                        <!-- Row 2 -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <div class="py-2 px-4 text-xs font-semibold text-slate-700 border-r border-slate-200">2. Perencanaan Program</div>
+                            <div></div><div></div><div class="py-2.5 bg-[#5C222E]"></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+
+                        <!-- Row 3 -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <div class="py-2 px-4 text-xs font-semibold text-slate-700 border-r border-slate-200">3. Internal Approval</div>
+                            <div></div><div></div><div></div><div class="py-2.5 bg-[#5C222E] border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+
+                        <!-- Row 4 -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <div class="py-2 px-4 text-xs font-semibold text-slate-700 border-r border-slate-200">4. Rekrutmen Volunteer</div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div class="py-2.5 bg-[#5C222E]"></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+
+                        <!-- Row 5 -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <div class="py-2 px-4 text-xs font-semibold text-slate-700 border-r border-slate-200">5. Training Volunteer</div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div class="py-2.5 bg-[#5C222E]"></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+
+                        <!-- Row 6 -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <div class="py-2 px-4 text-xs font-semibold text-slate-700 border-r border-slate-200">6. Kick Off Program</div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div class="py-2.5 bg-[#5C222E]"></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+
+                        <!-- Row 7 (Legacy Sharing) -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 bg-[#5C222E]/5 hover:bg-[#5C222E]/10 transition-colors">
+                            <div class="py-2 px-4 text-xs font-extrabold text-[#5C222E] border-r border-slate-200">7. Legacy Sharing Session (Cibubur)</div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="py-2.5 bg-[#5C222E] border-r border-slate-300"></div>
+                            <div class="py-2.5 bg-[#5C222E]"></div><div class="py-2.5 bg-[#5C222E]"></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+
+                        <!-- Row 8 (Co-Creation) -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 bg-[#C5A880]/10 hover:bg-[#C5A880]/20 transition-colors">
+                            <div class="py-2 px-4 text-xs font-extrabold text-[#5C222E] border-r border-slate-200">8. Co-Creation Kriya Session</div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div class="py-2.5 bg-[#C5A880]"></div><div class="py-2.5 bg-[#C5A880] border-r border-slate-300"></div>
+                            <div class="py-2.5 bg-[#C5A880]"></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+
+                        <!-- Row 9 -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <div class="py-2 px-4 text-xs font-semibold text-slate-700 border-r border-slate-200">9. Kurasi Cerita</div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div class="py-2.5 bg-[#5C222E]"></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+
+                        <!-- Row 10 -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <div class="py-2 px-4 text-xs font-semibold text-slate-700 border-r border-slate-200">10. Produksi Konten</div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div class="py-2.5 bg-[#5C222E]"></div><div class="py-2.5 bg-[#5C222E] border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+
+                        <!-- Row 11 -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <div class="py-2 px-4 text-xs font-semibold text-slate-700 border-r border-slate-200">11. Persiapan Produk</div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div class="py-2.5 bg-[#5C222E]"></div><div class="py-2.5 bg-[#5C222E]"></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+
+                        <!-- Row 12 -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <div class="py-2 px-4 text-xs font-semibold text-slate-700 border-r border-slate-200">12. Publikasi Campaign</div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div class="py-2.5 bg-[#5C222E]"></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+
+                        <!-- Row 13 -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <div class="py-2 px-4 text-xs font-semibold text-slate-700 border-r border-slate-200">13. Final Preparation (TIM)</div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="py-2.5 bg-[#5C222E] border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div></div>
+                        </div>
+
+                        <!-- Row 14 (Showcase) -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 bg-rose-50/50 hover:bg-rose-100/50 transition-colors">
+                            <div class="py-2 px-4 text-xs font-extrabold text-[#5C222E] border-r border-slate-200">14. LEGACY SHOWCASE AT TIM</div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div class="py-2.5 bg-[#5C222E]"></div><div></div><div></div><div></div>
+                        </div>
+
+                        <!-- Row 15 -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <div class="py-2 px-4 text-xs font-semibold text-slate-700 border-r border-slate-200">15. Media Release</div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div class="py-2.5 bg-[#5C222E]"></div><div></div><div></div><div></div>
+                        </div>
+
+                        <!-- Row 16 -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <div class="py-2 px-4 text-xs font-semibold text-slate-700 border-r border-slate-200">16. Monitoring Dampak</div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div class="py-2.5 bg-[#5C222E]"></div><div class="py-2.5 bg-[#5C222E]"></div><div></div>
+                        </div>
+
+                        <!-- Row 17 -->
+                        <div class="grid grid-cols-[260px_repeat(24,1fr)] items-center divide-x divide-slate-100 hover:bg-slate-50/50 transition-colors">
+                            <div class="py-2 px-4 text-xs font-semibold text-slate-700 border-r border-slate-200">17. Evaluasi &amp; Reporting</div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="border-r border-slate-300"></div>
+                            <div></div><div></div><div></div><div class="py-2.5 bg-[#5C222E]"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        // Logika Pergantian Tab Navigasi Utama
+        function switchTab(tabId) {
+            const secDashboard = document.getElementById('section-dashboard');
+            const secTable = document.getElementById('section-table');
+            const secTimeline = document.getElementById('section-timeline');
+
+            const btnDashboard = document.getElementById('btn-dashboard');
+            const btnTable = document.getElementById('btn-table');
+            const btnTimeline = document.getElementById('btn-timeline');
+
+            // Sembunyikan semua section terlebih dahulu
+            secDashboard.classList.add('hidden');
+            secTable.classList.add('hidden');
+            secTimeline.classList.add('hidden');
+
+            // Atur ulang class pasif pada semua tombol
+            btnDashboard.className = "tab-btn flex-1 xl:flex-none text-center px-4 py-2.5 hover:bg-white/5 text-[#E5C0B3] text-xs font-bold rounded-lg transition-all duration-300 whitespace-nowrap";
+            btnTable.className = "tab-btn flex-1 xl:flex-none text-center px-4 py-2.5 hover:bg-white/5 text-[#E5C0B3] text-xs font-bold rounded-lg transition-all duration-300 whitespace-nowrap";
+            btnTimeline.className = "tab-btn flex-1 xl:flex-none text-center px-4 py-2.5 hover:bg-white/5 text-[#E5C0B3] text-xs font-bold rounded-lg transition-all duration-300 whitespace-nowrap";
+
+            // Tampilkan section terpilih dan berikan status aktif
+            if (tabId === 'dashboard') {
+                secDashboard.classList.remove('hidden');
+                btnDashboard.className = "tab-btn active flex-1 xl:flex-none text-center px-4 py-2.5 text-xs font-bold rounded-lg transition-all duration-300 whitespace-nowrap";
+            } else if (tabId === 'table') {
+                secTable.classList.remove('hidden');
+                btnTable.className = "tab-btn active flex-1 xl:flex-none text-center px-4 py-2.5 text-xs font-bold rounded-lg transition-all duration-300 whitespace-nowrap";
+            } else if (tabId === 'timeline') {
+                secTimeline.classList.remove('hidden');
+                btnTimeline.className = "tab-btn active flex-1 xl:flex-none text-center px-4 py-2.5 text-xs font-bold rounded-lg transition-all duration-300 whitespace-nowrap";
+            }
+        }
+
+        // Logika Fungsi Simulasi Dampak Reputasi (PR Calculator)
+        function runPRSimulation() {
+            const volCount = parseInt(document.getElementById('sim-vol').value);
+            const hoursVal = parseInt(document.getElementById('sim-hours').value);
+
+            // Perbarui label angka
+            document.getElementById('lbl-vol-count').innerText = volCount + " Orang";
+            document.getElementById('lbl-hours-count').innerText = hoursVal + " Jam";
+
+            // Hitung nilai indeks performa secara linear berbobot
+            const basisVol = (volCount / 150) * 50;
+            const basisHours = (hoursVal / 4) * 50;
+            const finalScore = Math.min(Math.round(basisVol + basisHours), 100);
+
+            // Perbarui nilai di tampilan
+            document.getElementById('txt-score').innerText = finalScore;
+
+            // Berikan deskripsi feedback kualitatif yang sesuai secara otomatis
+            const txtFeedback = document.getElementById('txt-feedback');
+            if (finalScore >= 80) {
+                txtFeedback.innerText = '"Sentimen positif maksimal, cerita bernilai human interest kuat & berpotensi viral di media nasional secara organik."';
+                txtFeedback.className = "text-[10px] text-emerald-300 italic font-semibold";
+            } else if (finalScore >= 50) {
+                txtFeedback.innerText = '"Sentimen positif stabil, rilis berita memiliki peluang muat di media daerah dan sub-urban."';
+                txtFeedback.className = "text-[10px] text-slate-300 italic";
+            } else {
+                txtFeedback.innerText = '"Eksposur berita minim, program dianggap sebagai bentuk seremonial donasi biasa."';
+                txtFeedback.className = "text-[10px] text-rose-300 italic";
+            }
+        }
+
+        // Inisialisasi awal simulasi
+        window.onload = function() {
+            runPRSimulation();
+        }
+    </script>
+</body>
+</html>
